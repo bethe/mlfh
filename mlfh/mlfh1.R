@@ -62,6 +62,25 @@ head(city.state,n=2)
 # Convert list into a two-column matrix
 location.matrix <- do.call(rbind, city.state)
 
-# add City and State columns to ufo from the newly created location.matrix
+# add City and State columns to ufo from the newly created location.matrix; State abbreviations are made lower case for consistency
 ufo <- transform(ufo, USCity = location.matrix[,1], USState = tolower(location.matrix[,2]), stringsAsFactors = FALSE)
 
+# Remove foreign (i.e. Canadian) sightings from list by checking USState against a whitelist of states
+# Create a vector of US States
+us.states <-c("ak","al","ar","az","ca","co","ct","de","fl","ga","hi","ia","id","il", "in","ks","ky","la","ma","md","me","mi","mn","mo","ms","mt","nc","nd","ne","nh", "nj","nm","nv","ny","oh","ok","or","pa","ri","sc","sd","tn","tx","ut","va","vt", "wa","wi","wv","wy")
+# Match us.states against ufo$USStates and assign NA where there's no match to both States & Cities
+ufo$USState <- us.states[match(ufo$USState, us.states)]
+ufo$USCity[is.na(ufo$USState)] <- NA
+
+# Create subset of dataset with US sightings 
+ufo.us <- subset(ufo, !is.na(USCity))
+
+# Remove remaining entry with date (not happening in book instructions)
+ufo.us <- subset(ufo.us, !is.na(DateOccurred))
+
+# Check how many rows are left (51640)
+nrow(ufo.us)
+
+# Investigate summary statistics for UFO sightings dates
+head(ufo.us, n=1)
+summary(ufo.us$DateOccurred)
