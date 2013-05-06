@@ -84,3 +84,5 @@ nrow(ufo.us)
 # Investigate summary statistics for UFO sightings dates
 head(ufo.us, n=1)
 summary(ufo.us$DateOccurred)
+
+save.image(file="mlfh1.RData")
