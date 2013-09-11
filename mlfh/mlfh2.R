@@ -1,3 +1,5 @@
+# Download file from http://www.dropbox.com/s/c49jl0vi6bksbwh/01_heights_weights_genders.csv
+
 # Load data and get summary for one column (heights)
 data.file  <- file.path('01_heights_weights_genders.csv')
 heights.weights  <- read.csv(data.file, header = TRUE, sep = ',')

@@ -7,7 +7,7 @@ library(ggplot2)
 # set working directory
 setwd("~/mlfh/mlfh/mlfh/ch01")
 
-# Load data (file at http://www.dropbox.com/s/xt4k3851)
+# Load data (file at https://www.dropbox.com/s/fzhzwhebb6i4imk/ufo_awesome.tsv)
 ufo <- read.delim("ufo_awesome.tsv", sep="\t", stringsAsFactors=FALSE, header=FALSE, na.strings="")
 
 # Inspect data
